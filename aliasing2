@@ -1,0 +1,19 @@
+#include <fstream>
+#include <iostream>
+using namespace std;
+const float pi = 3.141592;
+int main() {
+    ofstream xxx("HW4 cos, sin 2.txt");
+    if (!xxx) {
+        cout << "can't open file\n";
+        return -1;
+    }
+    float dt, T;
+    dt = 1 / 10.0 / 5.0; //aliasing이 일어나지 않으려면 sampling 주파수가 주기함수의 최대주파수의 2배 이상이어야 한다, fmax = 10Hz, fsam >= 20Hz == Ts<=1/20
+    T = 3 / 10.0; // 100 * cos(20 * pi * t) * cos(220 * pi * t)와 60 * sin(240 * pi * t) + 80 * sin(220 * pi * t)의 주기는 0.1로 동일
+    for (float t = 0.0; t < T; t += dt) {
+        xxx << t << "  " << 100 * cos(20 * pi * t) * cos(220 * pi * t) << "  " << 60 * sin(240 * pi * t) + 80 * sin(220 * pi * t) << endl;
+    }
+    xxx.close();
+    return 1;
+}
