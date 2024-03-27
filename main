@@ -1,0 +1,20 @@
+#include <fstream>
+#include <iostream>
+using namespace std;
+const float pi = 3.141592;
+int main() {
+	ofstream xxx("final4.txt");
+	if (!xxx) {
+		cout << "can't open file\n";
+		return -1;
+	}
+	float t, dt, T;
+	t = 0.0;
+	dt = 1 / 10.0 / 50.0;
+	T = 2/10.0;
+	for (t = 0.0; t < T; t += dt) {
+		xxx << t << "  " << 100*cos(20 * pi * t)*cos(220*pi*t) << "  " << 60*sin(240*pi*t)+80*sin(220*pi*t) << endl;
+	}
+	xxx.close();
+		return 1;
+}
